@@ -1,0 +1,6 @@
+.profile__user{
+	max-width: 120px;
+	max-height: 120px;
+	flex-shrink: 0;
+	position: relative;
+}

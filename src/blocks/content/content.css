@@ -1,0 +1,19 @@
+.content {
+	max-width: calc(100% - (200px * 2));
+	margin: 0 auto;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+
+@media (max-width: 800px) {
+	.content {
+		max-width: calc(100% - (20px * 2));
+	}
+}
+
+@media (min-width: 801px) and (max-width: 1279px) {
+	.content {
+		max-width: calc(100% - (50px * 2));
+	}
+}

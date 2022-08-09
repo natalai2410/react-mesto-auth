@@ -1,0 +1,7 @@
+.place-item__content-like{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 3px;
+	flex-shrink: 1;
+}

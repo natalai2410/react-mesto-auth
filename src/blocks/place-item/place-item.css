@@ -1,0 +1,7 @@
+.place-item {
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	position: relative;
+	z-index: 0;
+}

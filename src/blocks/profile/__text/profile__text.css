@@ -1,0 +1,16 @@
+.profile__text {
+	color: white;
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	align-items: center;
+	column-gap: 18px;
+	row-gap: 4px;
+}
+
+@media screen and  (max-width: 800px) {
+	.profile__text {
+		column-gap: 14px;
+		max-width: 195px;
+		row-gap: 7px;
+	}
+}

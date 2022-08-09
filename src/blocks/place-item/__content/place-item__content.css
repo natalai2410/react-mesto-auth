@@ -1,0 +1,15 @@
+.place-item__content {
+	background-color: rgba(255, 255, 255, 1);
+	border-radius: 0 0 10px 10px;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 20px 15px 21px;
+	box-sizing: border-box;
+	align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+	.place-item__content {
+		margin-bottom: 20px;
+	}
+}

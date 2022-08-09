@@ -1,0 +1,18 @@
+.place-item__bin {
+	width: 18px;
+	height: 19px;
+	border: none;
+	outline: none;
+	text-decoration: none;
+	background: transparent url("../../../images/box.png") no-repeat;
+	transition: opacity 0.3s ease;
+	position: absolute;
+	z-index: 1;
+	right: 20px;
+	top: 20px;
+}
+
+.place-item__bin:hover {
+	cursor: pointer;
+	opacity: 0.5;
+}

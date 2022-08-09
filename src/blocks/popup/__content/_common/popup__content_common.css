@@ -1,0 +1,14 @@
+.popup__content_common {
+	max-width: 430px;
+	padding: 34px 36px 37px;
+	width: 100%;
+	border-radius: 10px;
+	background-color: white;
+}
+
+@media (max-width: 800px) {
+	.popup__content_common {
+		padding: 27px 22px 25px;
+		max-width: 282px;
+	}
+}
