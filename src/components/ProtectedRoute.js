@@ -1,6 +1,6 @@
 import React from "react";
-import {Redirect, Route} from "react-router-dom";
-
+import Route from "react-router-dom/es/Route";
+import Redirect from "react-router-dom/es/Redirect";
 
 
 const ProtectedRoute = ({ component: Component, ...props }) => {
