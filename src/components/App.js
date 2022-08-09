@@ -47,9 +47,7 @@ function App() {
 
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState(null);
-    // const history = useHistory();
-    const navigate = useNavigate();
-
+     const history = useHistory();
 
     //_______________
     const [popupImage, setPopupImage] = React.useState("");
@@ -79,7 +77,7 @@ function App() {
     }, []);
 
     React.useEffect(() => {
-        //history.push('/');
+        history.push('/');
     }, [loggedIn]);
 
     const onLogin = (email, password) => {
@@ -88,6 +86,7 @@ function App() {
                 localStorage.setItem("jwt", jwt);
                 setLoggedIn(true);
                 setEmail(email);
+                history.push("/");
             }).catch(() => {
                 setPopupImage(fail);
                 setPopupTitle("Что-то пошло не так");
@@ -100,7 +99,7 @@ function App() {
             .then(() => {
                 setPopupImage(success);
                 setPopupTitle("Вы успешно зарегистрировались!");
-                // history.push("/signin");
+                history.push("/signin");
             }).catch(() => {
                 setPopupImage(fail);
                 setPopupTitle("Что-то пошло не так");
