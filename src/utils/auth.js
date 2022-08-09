@@ -20,11 +20,11 @@ export const register = (email, password) => {
 };
 
 //авторизация
-export const authorize = ({email, password}) => {
+export const authorize = (email, password) => {
     return fetch(`${baseUrlAuth}/signin`, {
         method: "POST",
         headers,
-        body: JSON.stringify({email, password}),
+        body: JSON.stringify({email: email, password: password}),
     })
         .then(response => returnResult(response));
 };

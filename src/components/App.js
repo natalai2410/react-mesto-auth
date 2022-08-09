@@ -13,7 +13,7 @@ import AddPlacePopup from "./AddPlacePopup";
 
 import * as auth from "../utils/auth";
 
- import {useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 
 import ProtectedRoute from "./ProtectedRoute";
@@ -22,7 +22,6 @@ import InfoTooltip from "./InfoTooltip";
 
 import success from "../images/success.svg";
 import fail from "../images/fail.svg";
-
 
 
 import Register from "./Register";
@@ -47,7 +46,7 @@ function App() {
 
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState(null);
-     const history = useHistory();
+    const history = useHistory();
 
     //_______________
     const [popupImage, setPopupImage] = React.useState("");
@@ -81,9 +80,9 @@ function App() {
     }, [loggedIn]);
 
     const onLogin = (email, password) => {
-        return auth.authorize({email, password})
-            .then(({jwt, user: {email}}) => {
-                localStorage.setItem("jwt", jwt);
+        return auth.authorize(email, password)
+            .then((res) => {
+                localStorage.setItem("jwt", res.token);
                 setLoggedIn(true);
                 setEmail(email);
                 history.push("/");
@@ -224,33 +223,33 @@ function App() {
             <div className="page">
                 <div className="page__content">
                     <Switch>
-                        <Route  path="/signin">
+                        <Route path="/signin">
                             <Header title="Регистрация" route="/signup"/>
                             <Login onLogin={onLogin}/>
                         </Route>
 
-                        <Route  path="/signup">
+                        <Route path="/signup">
                             <Header title="Войти" route="/signin"/>
                             <Register onRegister={onRegister}/>
                         </Route>
 
-                        <Route  path="/">
-                        <Header title="Выйти" mail={email} onClick={onLoggedOut} route=""/>
+                        <Route path="/">
+                            <Header title="Выйти" mail={email} onClick={onLoggedOut} route=""/>
                             <ProtectedRoute exact path="/"
-                                component={Main}
-                                LoggedIn={loggedIn}
-                                onEditProfile={handleEditProfileClick}
-                                onAddPlace={handleAddPlaceClick}
-                                onEditAvatar={handleEditAvatarClick}
-                                onCardClick={handleCardClick}
-                                cards={cards}
-                                onCardLike={handleCardLike}
-                                onCardDelete={handleCardDelete}
+                                            component={Main}
+                                            LoggedIn={loggedIn}
+                                            onEditProfile={handleEditProfileClick}
+                                            onAddPlace={handleAddPlaceClick}
+                                            onEditAvatar={handleEditAvatarClick}
+                                            onCardClick={handleCardClick}
+                                            cards={cards}
+                                            onCardLike={handleCardLike}
+                                            onCardDelete={handleCardDelete}
                             />
                         </Route>
 
                         <Route exact path="*">
-                            {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
+                            {loggedIn ? <Redirect to="/"/> : <Redirect to="/signin"/>}
                         </Route>
 
                     </Switch>
