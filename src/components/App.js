@@ -13,7 +13,7 @@ import AddPlacePopup from "./AddPlacePopup";
 
 import * as auth from "../utils/auth";
 
-// import { Route, Routes, useHistory} from "react-router-dom";
+// import {useHistory} from "react-router-dom";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -26,7 +26,9 @@ import Register from "./Register";
 import Login from './Login'
 import Switch from "react-router-dom/es/Switch";
 import Route from "react-router-dom/es/Route";
-// import {useNavigate} from "react-router-dom";
+
+
+ import {useNavigate} from "react-router-dom";
 
 /**
  * @return {boolean}
@@ -41,7 +43,7 @@ function App() {
 
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState(null);
-    // const history = useHistory();
+    //const history = useHistory();
 
 
     //_______________
@@ -72,7 +74,7 @@ function App() {
     }, []);
 
     React.useEffect(() => {
-        // history.push('/');
+        //history.push('/');
     }, [loggedIn]);
 
     const onLogin = (email, password) => {
@@ -94,7 +96,7 @@ function App() {
             .then(() => {
                 setPopupImage(resolve);
                 setPopupTitle("Вы успешно зарегистрировались!");
-                // history.push("/signin");
+                //history.push("/diary");
                 // navigate("/signin");
             }).catch(() => {
                 setPopupTitle("Что-то пошло не так");
@@ -106,7 +108,7 @@ function App() {
         setEmail(null);
         // navigate("/signin");
         localStorage.removeItem("jwt");
-        // history.push("/signin")
+        //history.push("/signin")
     };
 
     //-------------------------------------------------//
@@ -218,37 +220,31 @@ function App() {
                 <div className="page__content">
                     <Switch>
 
-                        <Route path="/signin" element={
-                            <>
-                                <Header title="Регистрация" route="/signup"/>
-                                <Login onLogin={onLogin}/>
-                            </>
-                        }/>
+                        <Route exact path="/signin">
+                            <Header title="Регистрация" route="/signup"/>
+                            <Login onLogin={onLogin}/>
+                        </Route>
 
-                        <Route path="/signup" element={
-                            <>
-                                <Header title="Войти" route="/signin"/>
-                                <Register onRegister={onRegister}/>
-                            </>
-                        }/>
+                        <Route exact path="/signup">
+                            <Header title="Войти" route="/signin"/>
+                            <Register onRegister={onRegister}/>
+                        </Route>
 
-                        < Route exact path="/" element={
-                            <>
-                                <Header title="Выйти" mail={email} onClick={onLoggedOut} route=""/>
-                                <ProtectedRoute
-                                    component={Main}
-                                    LoggedIn={loggedIn}
-                                    onEditProfile={handleEditProfileClick}
-                                    onAddPlace={handleAddPlaceClick}
-                                    onEditAvatar={handleEditAvatarClick}
-                                    onCardClick={handleCardClick}
-                                    cards={cards}
-                                    onCardLike={handleCardLike}
-                                    onCardDelete={handleCardDelete}
-                                />
-                                < Footer/>
-                            </>
-                        }/>
+                        <Route exact path="/signup">
+                            <Header title="Выйти" mail={email} onClick={onLoggedOut} route=""/>
+                            <ProtectedRoute
+                                component={Main}
+                                LoggedIn={loggedIn}
+                                onEditProfile={handleEditProfileClick}
+                                onAddPlace={handleAddPlaceClick}
+                                onEditAvatar={handleEditAvatarClick}
+                                onCardClick={handleCardClick}
+                                cards={cards}
+                                onCardLike={handleCardLike}
+                                onCardDelete={handleCardDelete}
+                            />
+                        </Route>
+                        < Footer/>
                     </Switch>
 
                     <EditProfilePopup
