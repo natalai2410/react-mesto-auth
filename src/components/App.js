@@ -89,7 +89,8 @@ function App() {
                 history.push("/");
             }).catch(() => {
                 setPopupImage(fail);
-                setPopupTitle("Что-то пошло не так");
+                setPopupTitle("Что-то пошло не так!\n" +
+                    "Попробуйте ещё раз.");
                 handleInfoTooltip();
             });
     };
@@ -254,7 +255,7 @@ function App() {
 
                     </Switch>
 
-                    < Footer/>
+                    {loggedIn && < Footer/>}
 
                     <EditProfilePopup
                         isOpen={isEditProfilePopupOpen}
