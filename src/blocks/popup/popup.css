@@ -14,3 +14,34 @@
 	transition: all .3s linear;
 }
 
+
+/*---------------------*/
+
+.popup__info {
+	box-sizing: border-box;
+	position: relative;
+	width: calc((100vw - 320px) / (1280 - 320) * (430 - 280) + 280px);
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15);
+}
+
+
+.popup__status {
+	width: 120px;
+	height: 120px;
+	margin: 0 auto;
+	padding: calc((100vw - 320px) / (1280 - 320) * (60 - 50) + 50px) calc((100vw - 320px) / (1280 - 320) * (155 - 80) + 80px) calc((100vw - 320px) / (1280 - 320) * (30 - 38) + 38px);
+}
+
+
+.popup__message {
+	max-width: calc((100vw - 320px) / (1280 - 320) * (358 - 244) + 244px);
+	margin: 0 auto calc((100vw - 320px) / (1280 - 320) * (60 - 50) + 50px);
+	color: #000;
+	text-align: center;
+	font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 20) + 20px);
+	font-weight: 900;
+	line-height: calc((100vw - 320px) / (1280 - 320) * (29 - 24) + 24px);
+
+}

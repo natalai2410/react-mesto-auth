@@ -2,6 +2,7 @@ import React from 'react';
 import {baseUrlAuth, headers} from '../utils/constants';
 
 const returnResult = (result) => {
+    console.log(result);
     if (result.ok) {
         return result.json();
     }
@@ -9,7 +10,7 @@ const returnResult = (result) => {
 };
 
 //регистрации
-export const register = ({email, password}) => {
+export const register = (email, password) => {
     return fetch(`${baseUrlAuth}/signup`, {
         method: "POST",
         headers,

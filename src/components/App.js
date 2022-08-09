@@ -13,13 +13,15 @@ import AddPlacePopup from "./AddPlacePopup";
 
 import * as auth from "../utils/auth";
 
-// import {useHistory} from "react-router-dom";
+ // import {useHistory} from "react-router-dom";
 
 import ProtectedRoute from "./ProtectedRoute";
 
 import InfoTooltip from "./InfoTooltip";
-import resolve from "../images/resolve.svg";
-// import reject from "../images/reject.svg";
+
+import success from "../images/success.svg";
+import fail from "../images/fail.svg";
+
 
 
 import Register from "./Register";
@@ -28,7 +30,8 @@ import Switch from "react-router-dom/es/Switch";
 import Route from "react-router-dom/es/Route";
 
 
- import {useNavigate} from "react-router-dom";
+import Redirect from "react-router-dom/es/Redirect";
+
 
 /**
  * @return {boolean}
@@ -43,7 +46,7 @@ function App() {
 
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState(null);
-    //const history = useHistory();
+    // const history = useHistory();
 
 
     //_______________
@@ -83,30 +86,29 @@ function App() {
                 localStorage.setItem("jwt", jwt);
                 setLoggedIn(true);
                 setEmail(email);
-                // navigate("/");
             }).catch(() => {
-                // setPopupImage(reject);
+                setPopupImage(fail);
                 setPopupTitle("Что-то пошло не так");
                 handleInfoTooltip();
             });
     };
 
     const onRegister = (email, password) => {
-        return auth.register({email, password})
+        return auth.register(email, password)
             .then(() => {
-                setPopupImage(resolve);
+                setPopupImage(success);
                 setPopupTitle("Вы успешно зарегистрировались!");
-                //history.push("/diary");
-                // navigate("/signin");
+                // history.push("/signin");
             }).catch(() => {
+                setPopupImage(fail);
                 setPopupTitle("Что-то пошло не так");
+                handleInfoTooltip();
             });
     };
 
     const onLoggedOut = () => {
         setLoggedIn(false);
         setEmail(null);
-        // navigate("/signin");
         localStorage.removeItem("jwt");
         //history.push("/signin")
     };
@@ -149,6 +151,7 @@ function App() {
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setSelectedCard(null);
+        setInfoTooltip(false);
     }
 
     function handleUpdateUser(data) {
@@ -219,20 +222,19 @@ function App() {
             <div className="page">
                 <div className="page__content">
                     <Switch>
-
-                        <Route exact path="/signin">
+                        <Route  path="/signin">
                             <Header title="Регистрация" route="/signup"/>
                             <Login onLogin={onLogin}/>
                         </Route>
 
-                        <Route exact path="/signup">
+                        <Route  path="/signup">
                             <Header title="Войти" route="/signin"/>
                             <Register onRegister={onRegister}/>
                         </Route>
 
-                        <Route exact path="/signup">
-                            <Header title="Выйти" mail={email} onClick={onLoggedOut} route=""/>
-                            <ProtectedRoute
+                        <Route  path="/">
+                        <Header title="Выйти" mail={email} onClick={onLoggedOut} route=""/>
+                            <ProtectedRoute exact path="/"
                                 component={Main}
                                 LoggedIn={loggedIn}
                                 onEditProfile={handleEditProfileClick}
@@ -244,8 +246,14 @@ function App() {
                                 onCardDelete={handleCardDelete}
                             />
                         </Route>
-                        < Footer/>
+
+                        <Route exact path="*">
+                            {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
+                        </Route>
+
                     </Switch>
+
+                    < Footer/>
 
                     <EditProfilePopup
                         isOpen={isEditProfilePopupOpen}
