@@ -2,7 +2,7 @@ import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import React, {useEffect} from "react";
+import React from "react";
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from "./ImagePopup";
 import {api} from "../utils/Api";
@@ -13,7 +13,8 @@ import AddPlacePopup from "./AddPlacePopup";
 
 import * as auth from "../utils/auth";
 
- // import {useHistory} from "react-router-dom";
+ import {useHistory} from "react-router-dom";
+
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -47,6 +48,7 @@ function App() {
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState(null);
     // const history = useHistory();
+    const navigate = useNavigate();
 
 
     //_______________
