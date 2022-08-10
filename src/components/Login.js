@@ -26,7 +26,7 @@ function Login({onLogin}) {
     return (
         <section className="login">
             <h2 className="login__title">Вход</h2>
-            <form className="login__form" onSubmit={handleSubmit}>
+            <form className="login__form" onSubmit={handleSubmit} name='form-login'>
                 <input className="login__input"
                        type="email"
                        placeholder="Email"
